@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Yeabsira Tamirat — Web Developer & Designer portfolio cover">
+  <rect width="1200" height="630" fill="#F7F7F4"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#B7FF3C"/>
+      <stop offset="1" stop-color="#111111"/>
+    </linearGradient>
+  </defs>
+  <rect x="90" y="340" width="480" height="160" rx="24" fill="#FFFFFF" opacity="0.9"/>
+  <text x="140" y="415" fill="#111111" font-family="Inter, system-ui, sans-serif" font-size="52" font-weight="600" letter-spacing="-0.02em">Yeabsira Tamirat</text>
+  <text x="140" y="472" fill="#111111" font-family="Inter, system-ui, sans-serif" font-size="26">Web Developer &amp; Designer</text>
+  <circle cx="1020" cy="260" r="90" fill="url(#g)" opacity="0.25"/>
+  <text x="610" y="270" text-anchor="middle" fill="#111111" font-family="Inter, system-ui, sans-serif" font-size="48" font-weight="600">Building digital experiences that feel different.</text>
+  <rect x="1080" y="470" width="96" height="96" rx="16" fill="#111111"/>
+  <path d="M1058 505 L1090 535 L1058 565 M1098 505 H1168" stroke="#B7FF3C" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+    color-scheme: light;
+    --bg: #F7F7F4;
+    --surface: #FFFFFF;
+    --ink: #111111;
+    --lime: #B7FF3C;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+        color: var(--ink);
+    font-family: "Inter Variable", Inter, ui-sans, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+        background: rgba(183, 255, 60, 0.35);
+    color: #111111;
+  }
+
+  /* Focus visibility for accessibility */
+  :focus-visible {
+        outline: 2px solid var(--lime);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+    ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d4d4d4;
+    border-radius: 999px;
+    border: 2px solid var(--bg);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b8b8b8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+    /* Paper frosted surface — light editorial alternative to the old glow glass */
+  .glass {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(17, 17, 17, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+  .text-gradient {
+    background: linear-gradient(120deg, #B7FF3C 0%, #111111 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+  }
+}
+
+/* Custom cursor */
+@media (pointer: fine) {
+  body.cursor-active {
+    cursor: none;
+  }
+  body.cursor-active a,
+  body.cursor-active button {
+    cursor: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
