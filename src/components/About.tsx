@@ -4,6 +4,8 @@ import { about } from "../data/portfolio";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 import { useMounted } from "../hooks/usePrimitives";
+import Interactive3DCard from "./3d/Interactive3DCard";
+import { FloatingElement } from "./3d/FloatingElement";
 
 /** Animated counter that counts up when scrolled into view. */
 function Counter({ value, infinite }: { value: string; infinite?: boolean }) {
@@ -101,6 +103,14 @@ export default function About() {
               className="pointer-events-none absolute -right-10 -top-10 h-56 w-56 rounded-full bg-ink blur-[50px]"
               aria-hidden="true"
             />
+            {/* Decorative floating ring */}
+            <FloatingElement speed={0.3} className="absolute -left-6 top-1/2 -translate-y-1/2 pointer-events-none z-0" direction="up">
+              <div
+                className="h-16 w-16 rounded-full border border-lime/20 animate-float-slow"
+                aria-hidden="true"
+              />
+            </FloatingElement>
+            <Interactive3DCard maxRotation={4} scale={1.0} glare={false}>
             <motion.div
               initial="hidden"
               animate={mounted ? "show" : "hidden"}
@@ -128,6 +138,7 @@ export default function About() {
                 </motion.div>
               ))}
             </motion.div>
+            </Interactive3DCard>
           </div>
         </div>
       </div>

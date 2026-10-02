@@ -82,7 +82,7 @@ export default function Navbar() {
                   e.preventDefault();
                   goTo(link.href);
                 }}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 ${
+                className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-[1px] ${
                   active === link.href.slice(1)
                     ? "text-ink"
                     : "text-ink/55 hover:text-ink"

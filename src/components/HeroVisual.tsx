@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef } from "react";
-
-type Particle = {
+import { useMouseParallax } from "../hooks/useMouseParallax";type Particle = {
   x: number;
   y: number;
   vx: number;
@@ -11,13 +10,14 @@ type Particle = {
 
 /**
  * Subtle, restrained hero background: a faint grid, two soft gradient blobs
- * with gentle mouse parallax, and a very light canvas particle field. It adds
- * depth without competing with the foreground — nothing animated lives here
- * that isn't reducible for prefers-reduced-motion.
+ * with gentle mouse parallax, and a very light canvas particle field. On
+ * desktop it also renders a React Three Fiber scene with floating 3D objects.
+ * Everything is subordinate to the foreground headline.
  */
 export default function HeroVisual() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const reduceMotion = useReducedMotion();
+  const mouse = useMouseParallax(0.06);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -30,7 +30,7 @@ export default function HeroVisual() {
     let particles: Particle[] = [];
     let w = 0;
     let h = 0;
-    const mouse = { x: -9999, y: -9999 };
+    const mousePos = { x: -9999, y: -9999 };
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
 
     const resize = () => {
@@ -60,8 +60,8 @@ export default function HeroVisual() {
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
 
-        const dx = mouse.x - p.x;
-        const dy = mouse.y - p.y;
+        const dx = mousePos.x - p.x;
+        const dy = mousePos.y - p.y;
         const dist = Math.hypot(dx, dy);
         if (dist < 120 && dist > 0.01) {
           p.x += (dx / dist) * 0.3;
@@ -94,12 +94,12 @@ export default function HeroVisual() {
 
     const onMouse = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
+      mousePos.x = e.clientX - rect.left;
+      mousePos.y = e.clientY - rect.top;
     };
     const onLeave = () => {
-      mouse.x = -9999;
-      mouse.y = -9999;
+      mousePos.x = -9999;
+      mousePos.y = -9999;
     };
 
     resize();
@@ -126,17 +126,25 @@ export default function HeroVisual() {
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
       </div>
 
-      {/* Subtle gradient blobs (parallax via hover would require JS; kept static & soft) */}
+      {/* Subtle gradient blobs with mouse parallax */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
+        style={{
+          x: mouse.x * -20,
+          y: mouse.y * -15,
+        }}
         className="absolute -top-1/3 -left-40 h-[26rem] w-[26rem] rounded-full bg-gradient-to-br from-ink/25 via-ink/6 to-transparent blur-[60px]"
       />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.4, delay: 0.2 }}
+        style={{
+          x: mouse.x * 20,
+          y: mouse.y * 15,
+        }}
         className="absolute -bottom-1/3 -right-40 h-[26rem] w-[26rem] rounded-full bg-gradient-to-tr from-lime/30 via-lime/8 to-transparent blur-[60px]"
       />
 

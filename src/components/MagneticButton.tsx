@@ -37,12 +37,12 @@ export default function MagneticButton({
   const reset = () => setOffset({ x: 0, y: 0 });
 
   const base =
-    "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-[4px] border-2 border-black px-7 py-3.5 text-sm font-medium transition-all duration-300";
+    "group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-[4px] border-2 border-black px-7 py-3.5 text-sm font-medium transition-all duration-300 active:scale-[0.97] active:transition-transform active:duration-100";
 
   const styles =
     variant === "primary"
-      ? "bg-ink text-paper shadow-card hover:shadow-ink hover:-translate-y-0.5"
-      : "border-2 border-black bg-surface text-ink hover:bg-ink hover:text-paper";
+      ? "bg-ink text-paper shadow-card hover:shadow-card-lg hover:-translate-y-0.5"
+      : "border-2 border-black bg-surface text-ink hover:bg-ink hover:text-paper hover:shadow-card";
 
   const content = (
     <>

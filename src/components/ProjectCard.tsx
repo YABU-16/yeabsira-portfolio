@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import type { Project } from "../data/portfolio";
 import ProjectImage from "./ProjectImage";
+import Interactive3DCard from "./3d/Interactive3DCard";
 
 type ProjectCardProps = {
   project: Project;
@@ -23,6 +24,7 @@ export default function ProjectCard({
   const accent = ACCENTS[project.category] ?? "#B7FF3C";
 
   return (
+    <Interactive3DCard maxRotation={5} scale={1.01} glare>
     <motion.article
       initial={{ opacity: 0, y: 36 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -116,5 +118,6 @@ export default function ProjectCard({
         </div>
       </div>
     </motion.article>
+    </Interactive3DCard>
   );
 }

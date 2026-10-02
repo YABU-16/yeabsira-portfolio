@@ -3,6 +3,7 @@ import { profile, socials } from "../data/portfolio";
 import Reveal from "./Reveal";
 import SectionHeading from "./SectionHeading";
 import ContactForm from "./ContactForm";
+import { ContactDecoration } from "./3d/ContactDecoration";
 
 export default function Contact() {
   return (
@@ -13,6 +14,7 @@ export default function Contact() {
         className="pointer-events-none absolute -bottom-40 left-1/2 h-[30rem] w-[40rem] -translate-x-1/2 rounded-full bg-ink blur-[80px]"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ContactDecoration />
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           {/* Left: heading + direct links */}
           <div>
